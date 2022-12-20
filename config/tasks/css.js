@@ -2,6 +2,7 @@ import dartSass from "sass";
 import gulpSass from "gulp-sass";
 import cleanCss from "gulp-clean-css";
 import autoPrefixer from "gulp-autoprefixer";
+import gcmq from "gulp-group-css-media-queries";
 const sass = gulpSass(dartSass);
 
 export function css() {
@@ -14,10 +15,11 @@ export function css() {
          overrideBrowserslist: ["last 3 versions"],
          cascade: false,
       }))
+      .pipe(gcmq())
+      .pipe(app.plugins.beautify.css({ indent_size: 3 }))
       .pipe(app.gulp.dest(app.path.build.styles))
       .pipe(cleanCss({}))
-      .pipe(app.plugins.rename({
-         extname: ".min.css",
-      }))
+      .pipe(app.plugins.concat("styles.min.css"))
+      .pipe(app.plugins.browsersync.stream())
       .pipe(app.gulp.dest(app.path.build.styles))
 }
