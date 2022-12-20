@@ -15,19 +15,31 @@ global.app = {
 //* Импорт задач
 import { reset } from "./config/tasks/reset.js";
 import { css } from "./config/tasks/css.js";
+import { cssLibs } from "./config/tasks/css-libs.js"
+import { html } from "./config/tasks/html.js"
+import { server } from "./config/tasks/server.js";
 
 //* Слежка за изменениями
 function watcher() {
-   gulp.watch(`${path.srcFolder}/scss/**/*.scss`, css);
+   gulp.watch(`${path.watch.styles}`, css);
+   gulp.watch(`${path.watch.stylesLibs}`, cssLibs);
+   gulp.watch(`${path.watch.html}`, html);
+   gulp.watch(`${path.watch.html}`).on("change", plugins.browsersync.reload);
 }
 
 //* Сценарии выполнения
-const devTasks = gulp.series(reset, css, watcher);
+const buildTasks = gulp.series(html, css, cssLibs);
+const devTasks = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
 
 //* Экспорт задач
-export { css };
 export { reset };
-export { watcher };
+export { css };
+export { cssLibs };
+export { html };
+export { server };
 
 //* Экспорт сценариев выполнения
 export { devTasks };
+
+//* Сценарий по умолчанию (Gulp)
+gulp.task('default', devTasks);

@@ -7,15 +7,23 @@ const buildFolder = "./dist";
 export const path = {
 	src: {
       styles: `${srcFolder}/scss/styles.scss`,
-      html: `${srcFolder}/**.*.{htm, html}`
+      stylesLibs: `${srcFolder}/css/libs/*.css`,
+      html: `${srcFolder}/*.html`,
+      images: `${srcFolder}/img/**/*.{png,jpg,jpeg,webp,gif}`,
+      imagesTemp: `${srcFolder}/temp/**/*.{png,jpg,jpeg,webp,gif}`,
+      svg: `${srcFolder}/img/**/*.svg`,
    },
 	build: {
       styles: `${buildFolder}/css/`,
       html: `${buildFolder}/`,
+      images: `${buildFolder}/img/`,
    },
 	watch: {
-      styles: `${srcFolder}/scss/styles.scss`,
-      html: `${srcFolder}/**.*.{htm, html}`
+      styles: `${srcFolder}/scss/**/*.scss`,
+      stylesLibs: `${srcFolder}/css/libs/*.css`,
+      html: `${srcFolder}/**/*.html`,
+      images: `${srcFolder}/img/**/*.{png,jpg,jpeg,webp,gif}`,
+      svg: `${srcFolder}/img/**/*.svg`,
    },
 	reset: buildFolder,
 	buildFolder: buildFolder,
