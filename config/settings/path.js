@@ -17,7 +17,7 @@ export const path = {
       styles: `${srcFolder}/scss/styles.scss`,
       html: `${srcFolder}/**.*.{htm, html}`
    },
-	clean: buildFolder,
+	reset: buildFolder,
 	buildFolder: buildFolder,
 	srcFolder: srcFolder,
    rootFolder: rootFolder,

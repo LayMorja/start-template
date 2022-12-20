@@ -18,7 +18,7 @@ import { css } from "./config/tasks/css.js";
 
 //* Слежка за изменениями
 function watcher() {
-   gulp.watch(["./src/scss/**.*.scss"], css);
+   gulp.watch(`${path.srcFolder}/scss/**/*.scss`, css);
 }
 
 //* Сценарии выполнения
@@ -26,6 +26,8 @@ const devTasks = gulp.series(reset, css, watcher);
 
 //* Экспорт задач
 export { css };
+export { reset };
+export { watcher };
 
 //* Экспорт сценариев выполнения
 export { devTasks };
