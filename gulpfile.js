@@ -7,9 +7,9 @@ import { path } from "./config/settings/path.js";
 
 //* Глобальная переменная для доступа отовсюду
 global.app = {
-   path: path,
-   gulp: gulp,
-   plugins: plugins,
+   gulp,
+   path,
+   plugins
 }
 
 //* Импорт задач
@@ -22,21 +22,23 @@ import { js } from "./config/tasks/js.js";
 import { jsVendors } from "./config/tasks/js-vendors.js";
 import { otfToTtf, ttfToWoff, fontStyle } from "./config/tasks/fonts.js";
 import { resources } from "./config/tasks/resources.js";
+import { sprite } from "./config/tasks/sprite.js";
 
 //* Слежка за изменениями
 function watcher() {
    gulp.watch(`${path.watch.styles}`, css);
    gulp.watch(`${path.watch.html}`, html);
-   gulp.watch(`${path.src.images}`, images);
-   gulp.watch(`${path.src.js}`, js);
+   gulp.watch(`${path.watch.images}`, images);
+   gulp.watch(`${path.watch.js}`, js);
    gulp.watch(`${path.watch.resources}`, resources);
+   gulp.watch(`${path.watch.sprite}`, sprite);
 }
 
 
 //* Сценарии выполнения
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
 
-const buildTasks = gulp.series(fonts, gulp.parallel(html, css, js, images, resources));
+const buildTasks = gulp.series(fonts, gulp.parallel(html, css, js, images, resources, sprite));
 
 const devTasks = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
 
@@ -50,6 +52,7 @@ export { js };
 export { fonts };
 export { jsVendors };
 export { resources };
+export { sprite };
 
 //* Экспорт сценариев выполнения
 export { devTasks };
