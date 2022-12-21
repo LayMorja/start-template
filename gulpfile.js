@@ -18,6 +18,7 @@ import { css } from "./config/tasks/css.js";
 import { cssLibs } from "./config/tasks/css-libs.js"
 import { html } from "./config/tasks/html.js"
 import { server } from "./config/tasks/server.js";
+import { images } from "./config/tasks/images.js";
 
 //* Слежка за изменениями
 function watcher() {
@@ -25,6 +26,7 @@ function watcher() {
    gulp.watch(`${path.watch.stylesLibs}`, cssLibs);
    gulp.watch(`${path.watch.html}`, html);
    gulp.watch(`${path.watch.html}`).on("change", plugins.browsersync.reload);
+   gulp.watch(`${path.src.images}`, images)
 }
 
 //* Сценарии выполнения
@@ -37,6 +39,7 @@ export { css };
 export { cssLibs };
 export { html };
 export { server };
+export { images };
 
 //* Экспорт сценариев выполнения
 export { devTasks };
