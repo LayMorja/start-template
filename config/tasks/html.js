@@ -15,7 +15,8 @@ export function html() {
          locale: ["ru", "en-US"],
          htmlEntity: { type: "name" },
       }))
-      .pipe(app.plugins.replace(/@img\//g, "img/"))
+      .pipe(app.plugins.replace(/@img\//g, "./img/"))
+      .pipe(app.plugins.replace(/@resources\//g, "./"))
       .pipe(app.plugins.beautify.html({ indent_size: 3 }))
       .pipe(version({
          "value": "%DT%",

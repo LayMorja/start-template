@@ -1,7 +1,7 @@
 import webpackStream from "webpack-stream"
 
-export function js() {
-   return app.gulp.src(`${app.path.src.js}/app.js`, { sourcemaps: true })
+export function jsVendors() {
+   return app.gulp.src(`${app.path.src.js}/vendors.js`, { sourcemaps: true })
       .pipe(app.plugins.plumber(
          app.plugins.notify.onError({
             "title": "JS",
@@ -11,7 +11,7 @@ export function js() {
       .pipe(webpackStream({
          mode: "development",
          output: {
-            filename: "app.min.js",
+            filename: "vendors.min.js",
          }
       }))
       .pipe(app.gulp.dest(app.path.build.js))

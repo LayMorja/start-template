@@ -15,37 +15,41 @@ global.app = {
 //* Импорт задач
 import { reset } from "./config/tasks/reset.js";
 import { css } from "./config/tasks/css.js";
-import { cssLibs } from "./config/tasks/css-libs.js"
 import { html } from "./config/tasks/html.js"
 import { server } from "./config/tasks/server.js";
 import { images } from "./config/tasks/images.js";
 import { js } from "./config/tasks/js.js";
-import { OTFtoTTF, TTFtoWOFF, fontStyle } from "./config/tasks/fonts.js";
+import { jsVendors } from "./config/tasks/js-vendors.js";
+import { otfToTtf, ttfToWoff, fontStyle } from "./config/tasks/fonts.js";
+import { resources } from "./config/tasks/resources.js";
 
 //* Слежка за изменениями
 function watcher() {
    gulp.watch(`${path.watch.styles}`, css);
-   gulp.watch(`${path.watch.stylesLibs}`, cssLibs);
    gulp.watch(`${path.watch.html}`, html);
    gulp.watch(`${path.src.images}`, images);
    gulp.watch(`${path.src.js}`, js);
+   gulp.watch(`${path.watch.resources}`, resources);
 }
 
-const fonts = gulp.series(OTFtoTTF, TTFtoWOFF, fontStyle);
 
 //* Сценарии выполнения
-const buildTasks = gulp.series(html, css, cssLibs, js, images);
+const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
+
+const buildTasks = gulp.series(fonts, gulp.parallel(html, css, js, images, resources));
+
 const devTasks = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
 
 //* Экспорт задач
 export { reset };
 export { css };
-export { cssLibs };
 export { html };
 export { server };
 export { images };
 export { js };
 export { fonts };
+export { jsVendors };
+export { resources };
 
 //* Экспорт сценариев выполнения
 export { devTasks };

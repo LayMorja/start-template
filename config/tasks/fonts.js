@@ -2,8 +2,7 @@ import fs from "fs";
 import fonter from "gulp-fonter";
 import ttf2woff2 from "gulp-ttf2woff2";
 
-
-export function OTFtoTTF() {
+export function otfToTtf() {
    return app.gulp.src(`${app.path.src.fonts}/*.otf`)
       .pipe(app.plugins.plumber(
          app.plugins.notify.onError({
@@ -17,7 +16,7 @@ export function OTFtoTTF() {
       .pipe(app.gulp.dest(app.path.src.fonts))
 }
 
-export function TTFtoWOFF() {
+export function ttfToWoff() {
    return app.gulp.src(`${app.path.src.fonts}/*.ttf`)
       .pipe(app.plugins.plumber(
          app.plugins.notify.onError({
@@ -34,8 +33,8 @@ export function TTFtoWOFF() {
       .pipe(app.gulp.dest(app.path.build.fonts))
 }
 
-export const fontStyle = () => {
-	let fontsFile = `${app.path.srcFolder}/scss/fonts/fonts.scss`;
+export function fontStyle() {
+	let fontsFile = `${app.path.srcFolder}/scss/fonts/_fonts.scss`;
 	app.isFontsReW ? fs.unlink(fontsFile, cb) : null;
 	fs.readdir(app.path.build.fonts, function (err, fontsFiles) {
 		if (fontsFiles) {
@@ -71,7 +70,7 @@ export const fontStyle = () => {
 					}
 				}
 			} else {
-				console.log("Файл scss/fonts/fonts.scss уже существует. Для обновления файла нужно его удалить!");
+				console.log("Файл scss/fonts/_fonts.scss уже существует. Для обновления файла нужно его удалить!");
 			}
 		} else {
 			fs.unlink(fontsFile, cb)
@@ -79,4 +78,4 @@ export const fontStyle = () => {
 	});
 	return app.gulp.src(`${app.path.srcFolder}`);
 }
-function cb() { }
+function cb(){}

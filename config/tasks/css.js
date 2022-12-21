@@ -30,9 +30,12 @@ export function css() {
          overrideBrowserslist: ["last 3 versions"],
          cascade: false,
       }))
+      .pipe(app.plugins.beautify.css({ indent_size: 3 }))
       // .pipe(app.gulp.dest(app.path.build.styles))
       .pipe(cleanCss({}))
-      .pipe(app.plugins.concat("styles.min.css"))
+      .pipe(app.plugins.rename({
+         extname: ".min.css",
+      }))
       .pipe(app.gulp.dest(app.path.build.styles))
       .pipe(app.plugins.browsersync.stream())
 }
