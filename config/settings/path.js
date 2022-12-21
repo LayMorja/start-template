@@ -8,12 +8,12 @@ export const path = {
 	src: {
       styles: `${srcFolder}/scss/*.scss`,
       html: `${srcFolder}/*.html`,
-      images: [`${srcFolder}/img/**/*`, `!${srcFolder}/img/**.*.svg`],
-      imagesTemp: `${srcFolder}/temp/**/*.{png,jpg,jpeg,webp,gif}`,
-      svg: `${srcFolder}/img/**/*.svg`,
+      images: [`${srcFolder}/img/**/*.{jpg,jpeg,png,webp,gif}`],
+      svg: [`${srcFolder}/img/**/*.svg`, `!${srcFolder}/img/svgIcons/**/*`],
       js: `${srcFolder}/js`,
       fonts: `${srcFolder}/fonts`,
-      resources: `${srcFolder}/resources/**/*`
+      resources: `${srcFolder}/resources/**/*`,
+      sprite: `${srcFolder}/img/svgIcons/**.svg`,
    },
 	build: {
       styles: `${buildFolder}/css/`,
@@ -21,15 +21,15 @@ export const path = {
       images: `${buildFolder}/img/`,
       js: `${buildFolder}/js/`,
       fonts: `${buildFolder}/fonts/`,
-      resources: `${buildFolder}/`
    },
 	watch: {
       styles: `${srcFolder}/scss/**/*.scss`,
       html: `${srcFolder}/**/*.html`,
-      images: [`${srcFolder}/img/**/*`, `!${srcFolder}/img/**.*.svg`],
-      svg: `${srcFolder}/img/**/*.svg`,
+      images: [`${srcFolder}/img/**/*.{jpg,jpeg,png,webp,gif}`],
+      svg: [`${srcFolder}/img/**/*.svg`, `!${srcFolder}/img/svgIcons/**/*`],
       js: `${srcFolder}/js/**/*.js`,
-      resources: `${srcFolder}/resources/**/`
+      resources: `${srcFolder}/resources/**/`,
+      sprite: `${srcFolder}/img/svgIcons/**.svg`,
    },
 	reset: buildFolder,
 	buildFolder: buildFolder,
