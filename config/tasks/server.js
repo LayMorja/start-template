@@ -1,5 +1,8 @@
 export function server() {
    app.plugins.browsersync.init({
-      server: app.path.buildFolder,
+      server: {
+         baseDir: app.path.build.html,
+      },
+      notify: false
    });
 }

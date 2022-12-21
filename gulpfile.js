@@ -19,18 +19,19 @@ import { cssLibs } from "./config/tasks/css-libs.js"
 import { html } from "./config/tasks/html.js"
 import { server } from "./config/tasks/server.js";
 import { images } from "./config/tasks/images.js";
+import { js } from "./config/tasks/js.js";
 
 //* Слежка за изменениями
 function watcher() {
    gulp.watch(`${path.watch.styles}`, css);
    gulp.watch(`${path.watch.stylesLibs}`, cssLibs);
    gulp.watch(`${path.watch.html}`, html);
-   gulp.watch(`${path.watch.html}`).on("change", plugins.browsersync.reload);
-   gulp.watch(`${path.src.images}`, images)
+   gulp.watch(`${path.src.images}`, images);
+   gulp.watch(`${path.src.js}`, js);
 }
 
 //* Сценарии выполнения
-const buildTasks = gulp.series(html, css, cssLibs);
+const buildTasks = gulp.series(html, css, cssLibs, js, images);
 const devTasks = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
 
 //* Экспорт задач
@@ -40,9 +41,11 @@ export { cssLibs };
 export { html };
 export { server };
 export { images };
+export { js };
 
 //* Экспорт сценариев выполнения
 export { devTasks };
+export { buildTasks };
 
 //* Сценарий по умолчанию (Gulp)
 gulp.task('default', devTasks);

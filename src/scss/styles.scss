@@ -5,6 +5,7 @@ body {
    align-items: center;
    justify-content: center;
    background-color: #2e2e2e;
+   background-image: url("@img/soc-6.png") center/cover no-repeat;
 }
 body h1 {
    font-family: 'Rubik Gemstones', cursive;
@@ -13,21 +14,12 @@ body h1 {
    white-space: nowrap;
    animation: squeze 2s ease infinite alternate;
 }
-<<<<<<< HEAD
-@import "header";
-@import "footer";
-font {
-   margin-bottom: 20px;
+body h2 {
+   h3 h4 h5 {
+      font-size: 23423px;
+   }
+   font-size: 234234px;
 }
-div {
-   margin-bottom: 20px;
-   margin-top: 2px;
-}
-table {
-   border: 0;
-   width: 100%;
-   max-width: 200px;
-=======
 @keyframes squeze {
    from {
       letter-spacing: 0.2em;
@@ -45,5 +37,4 @@ table {
    body h1 {
       font-size: 3vw;
    }
->>>>>>> 90c08ea439ff3c3ab0546ddcf794a0ccb2bfdc88
 }
