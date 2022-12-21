@@ -20,6 +20,7 @@ import { html } from "./config/tasks/html.js"
 import { server } from "./config/tasks/server.js";
 import { images } from "./config/tasks/images.js";
 import { js } from "./config/tasks/js.js";
+import { OTFtoTTF, TTFtoWOFF, fontStyle } from "./config/tasks/fonts.js";
 
 //* Слежка за изменениями
 function watcher() {
@@ -29,6 +30,8 @@ function watcher() {
    gulp.watch(`${path.src.images}`, images);
    gulp.watch(`${path.src.js}`, js);
 }
+
+const fonts = gulp.series(OTFtoTTF, TTFtoWOFF, fontStyle);
 
 //* Сценарии выполнения
 const buildTasks = gulp.series(html, css, cssLibs, js, images);
@@ -42,6 +45,7 @@ export { html };
 export { server };
 export { images };
 export { js };
+export { fonts };
 
 //* Экспорт сценариев выполнения
 export { devTasks };

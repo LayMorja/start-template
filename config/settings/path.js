@@ -13,12 +13,14 @@ export const path = {
       imagesTemp: `${srcFolder}/temp/**/*.{png,jpg,jpeg,webp,gif}`,
       svg: `${srcFolder}/img/**/*.svg`,
       js: `${srcFolder}/js/app.js`,
+      fonts: `${srcFolder}/fonts`,
    },
 	build: {
       styles: `${buildFolder}/css/`,
       html: `${buildFolder}/`,
       images: `${buildFolder}/img/`,
       js: `${buildFolder}/js/`,
+      fonts: `${buildFolder}/fonts/`
    },
 	watch: {
       styles: `${srcFolder}/scss/**/*.scss`,
