@@ -6,6 +6,7 @@ import plumber from "gulp-plumber";
 import notify from "gulp-notify";
 import newer from "gulp-newer";
 import rename from "gulp-rename";
+import gulpIf from "gulp-if";
 const browsersync = browserSync.create();
 
 export const plugins = {
@@ -17,4 +18,5 @@ export const plugins = {
    notify,
    newer,
    rename,
+   if: gulpIf
 }

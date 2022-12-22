@@ -5,3 +5,4 @@ package-lock.json
 *.php
 src/phpmailer/
 config/version.json
+.gitignore

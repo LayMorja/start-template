@@ -7,6 +7,8 @@ import { path } from "./config/settings/path.js";
 
 //* Глобальная переменная для доступа отовсюду
 global.app = {
+   isDev: !process.argv.includes("--build"),
+   isBuild: process.argv.includes("--build"),
    gulp,
    path,
    plugins
@@ -23,6 +25,7 @@ import { jsVendors } from "./config/tasks/js-vendors.js";
 import { otfToTtf, ttfToWoff, fontStyle } from "./config/tasks/fonts.js";
 import { resources } from "./config/tasks/resources.js";
 import { sprite } from "./config/tasks/sprite.js";
+import { temp } from "./config/tasks/temp.js";
 
 //* Слежка за изменениями
 function watcher() {
@@ -30,17 +33,23 @@ function watcher() {
    gulp.watch(`${path.watch.html}`, html);
    gulp.watch(`${path.watch.images}`, images);
    gulp.watch(`${path.watch.js}`, js);
+   gulp.watch(`${path.watch.jsVendors}`, jsVendors);
    gulp.watch(`${path.watch.resources}`, resources);
    gulp.watch(`${path.watch.sprite}`, sprite);
+   gulp.watch(`${path.watch.temp}`, temp);
 }
-
 
 //* Сценарии выполнения
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
 
 const buildTasks = gulp.series(fonts, gulp.parallel(html, css, js, images, resources, sprite));
+const cmsTasks = gulp.series(fonts, gulp.parallel(html, css, js, jsVendors, images, temp, resources, sprite));
 
-const devTasks = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
+const dev = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
+const build = gulp.series(reset, buildTasks);
+
+const cmsDev = gulp.series(reset, cmsTasks, gulp.parallel(watcher, server));
+const cmsBuild = gulp.series(reset, cmsTasks);
 
 //* Экспорт задач
 export { reset };
@@ -53,10 +62,15 @@ export { fonts };
 export { jsVendors };
 export { resources };
 export { sprite };
+export { temp };
 
 //* Экспорт сценариев выполнения
-export { devTasks };
+export { dev };
+export { build };
+export { cmsDev };
+export { cmsBuild };
 export { buildTasks };
+export { cmsTasks };
 
 //* Сценарий по умолчанию (Gulp)
-gulp.task('default', devTasks);
+gulp.task('default', dev);

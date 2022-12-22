@@ -1,10 +1,14 @@
 {
-  "name": "gulp-new-year",
+  "name": "Gulp-LayMorja",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just a gulp build",
+  "author": "LayMorja",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp",
+    "build": "gulp build --build",
+    "cms-d": "gulp cmsDev",
+    "cms-b": "gulp cmsBuild --build"
   },
   "type": "module",
   "author": "LayMorja",
@@ -22,6 +26,7 @@
     "gulp-file-include": "^2.3.0",
     "gulp-fonter": "^0.3.0",
     "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-if": "^3.0.0",
     "gulp-imagemin": "^8.0.0",
     "gulp-newer": "^1.4.0",
     "gulp-notify": "^4.0.0",
@@ -35,9 +40,6 @@
     "gulp-typograf": "^4.0.3",
     "gulp-uglify-es": "^3.0.0",
     "gulp-version-number": "^0.2.4",
-    "gulp-webp": "^4.0.1",
-    "gulp-webpcss": "^1.1.1",
-    "jquery": "^3.6.3",
     "sass": "^1.57.0",
     "webp-converter": "^2.2.3",
     "webpack": "^5.75.0",

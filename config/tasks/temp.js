@@ -1,19 +1,14 @@
 import imagemin from "gulp-imagemin";
-// import webp from "gulp-webp";
 
-export function images() {
-   return app.gulp.src(app.path.src.images)
+export function temp() {
+   return app.gulp.src(app.path.src.temp)
       .pipe(app.plugins.plumber(
          app.plugins.notify.onError({
-            "title": "IMAGES",
+            "title": "TEMP",
             "message": "Error: <%= error.message %>",
          })
       ))
-      // .pipe(app.plugins.newer(app.path.build.images))
-      // .pipe(webp())
-      // .pipe(app.gulp.dest(app.path.build.images))
-      // .pipe(app.gulp.src(app.path.src.images))
-      .pipe(app.plugins.newer(app.path.build.images))
+      .pipe(app.plugins.newer(app.path.build.temp))
       .pipe(app.plugins.if(
          app.isBuild,
          imagemin({
@@ -23,8 +18,8 @@ export function images() {
             optimizationLevel: 3,
          })
       ))
-      .pipe(app.gulp.dest(app.path.build.images))
+      .pipe(app.gulp.dest(app.path.build.temp))
       .pipe(app.gulp.src(app.path.src.svg))
-      .pipe(app.gulp.dest(app.path.build.images))
+      .pipe(app.gulp.dest(app.path.build.temp))
       .pipe(app.plugins.browsersync.stream())
 }
