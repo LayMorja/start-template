@@ -9,6 +9,7 @@ import { path } from "./config/settings/path.js";
 global.app = {
    isDev: !process.argv.includes("--build"),
    isBuild: process.argv.includes("--build"),
+	isRewrite: process.argv.includes('--rewrite'),
    gulp,
    path,
    plugins
@@ -26,6 +27,7 @@ import { otfToTtf, ttfToWoff, fontStyle } from "./config/tasks/fonts.js";
 import { resources } from "./config/tasks/resources.js";
 import { sprite } from "./config/tasks/sprite.js";
 import { temp } from "./config/tasks/temp.js";
+import { zip } from "./config/tasks/zip.js";
 
 //* Слежка за изменениями
 function watcher() {
@@ -47,9 +49,11 @@ const cmsTasks = gulp.series(fonts, gulp.parallel(html, css, js, jsVendors, imag
 
 const dev = gulp.series(reset, buildTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, buildTasks);
+const bulidZip = gulp.series(build, zip);
 
 const cmsDev = gulp.series(reset, cmsTasks, gulp.parallel(watcher, server));
 const cmsBuild = gulp.series(reset, cmsTasks);
+const cmsZip = gulp.series(cmsBuild, zip);
 
 //* Экспорт задач
 export { reset };
@@ -71,6 +75,8 @@ export { cmsDev };
 export { cmsBuild };
 export { buildTasks };
 export { cmsTasks };
+export { bulidZip };
+export { cmsZip };
 
 //* Сценарий по умолчанию (Gulp)
 gulp.task('default', dev);
