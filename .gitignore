@@ -2,7 +2,4 @@
 /dist
 package-lock.json
 *.tgz
-*.php
-src/phpmailer/
 config/version.json
-.gitignore

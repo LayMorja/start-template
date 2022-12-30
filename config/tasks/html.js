@@ -1,6 +1,6 @@
 import fileinclude from "gulp-file-include"
 import version from "gulp-version-number";
-import typograf from "gulp-typograf/index.js";
+import typograf from "gulp-typograf";
 // import webphtml from "gulp-webp-html-nosvg";
 
 // "gulp-webp": "^4.0.1",
@@ -16,13 +16,14 @@ export function html() {
          })
       ))
       .pipe(fileinclude({}))
-      .pipe(typograf({
-         locale: ["ru", "en-US"],
+      .pipe(typograf({ 
+         locale: ['ru', 'en-US'],
          htmlEntity: { type: "name" },
       }))
-      .pipe(app.plugins.replace(/@img\//g, "./img/"))
-      .pipe(app.plugins.replace(/@resources\//g, "./"))
-      .pipe(app.plugins.replace(/@temp\//g, "./temp/"))
+      .pipe(app.plugins.replace(/@img\//g, "img/"))
+      .pipe(app.plugins.replace(/@resources\//g, "/"))
+      .pipe(app.plugins.replace(/@temp\//g, "temp/"))
+      .pipe(app.plugins.replace("NEW_PROJECT_NAME", `${app.path.rootFolder}`))
       // .pipe(webphtml())
       .pipe(app.plugins.if(
          app.isBuild,

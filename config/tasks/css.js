@@ -15,11 +15,11 @@ export function css() {
             "message": "Error: <%= error.message %>",
          })
       ))
-      .pipe(app.plugins.replace(/@img\//g, "../img/"))
       .pipe(sass({
          indentWidth: 3,
          outputStyle: "expanded",
       }))
+      .pipe(app.plugins.replace(/@img\//g, "../img/"))
       .pipe(app.plugins.if(
          app.isBuild,
          gcmq()

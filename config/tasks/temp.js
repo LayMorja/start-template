@@ -19,7 +19,7 @@ export function temp() {
          })
       ))
       .pipe(app.gulp.dest(app.path.build.temp))
-      .pipe(app.gulp.src(app.path.src.svg))
+      .pipe(app.gulp.src(app.path.src.tempSvg))
       .pipe(app.gulp.dest(app.path.build.temp))
       .pipe(app.plugins.browsersync.stream())
 }

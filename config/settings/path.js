@@ -14,7 +14,8 @@ export const path = {
       fonts: `${srcFolder}/fonts`,
       resources: `${srcFolder}/resources/**/*`,
       sprite: `${srcFolder}/img/svgIcons/**.svg`,
-      temp: `${srcFolder}/temp/**/*.{jpg,jpeg,png,webp,gif}`
+      temp: `${srcFolder}/temp/**/*.{jpg,jpeg,png,webp,gif}`,
+      tempSvg: `${srcFolder}/temp/**/*.svg`,
    },
 	build: {
       styles: `${buildFolder}/css/`,
@@ -27,16 +28,23 @@ export const path = {
 	watch: {
       styles: `${srcFolder}/scss/**/*.scss`,
       html: `${srcFolder}/**/*.html`,
-      images: `${srcFolder}/img/**/*.{jpg,jpeg,png,webp,gif}`,
-      svg: [`${srcFolder}/img/**/*.svg`, `!${srcFolder}/img/svgIcons/**/*`],
+      images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,ico,gif,webp}`,
       js: `${srcFolder}/js/**/*.js`,
       jsVendors: `${srcFolder}/js/vendors/**/*.js`,
       resources: `${srcFolder}/resources/**/`,
       sprite: `${srcFolder}/img/svgIcons/**.svg`,
-      temp: `${srcFolder}/temp/**/*.{jpg,jpeg,png,webp,gif}`
+      temp: `${srcFolder}/temp/**/*.{jpg,jpeg,png,svg,ico,gif,webp}`
    },
 	reset: buildFolder,
 	buildFolder: buildFolder,
 	srcFolder: srcFolder,
    rootFolder: rootFolder,
+   ftp: `www/laymorja.site`,
+}
+
+export const ftpSetting = {
+   host: "37.140.192.135",
+   user: "u1665794",
+   password: "rpCkZk5yZ257XYrx",
+   parallel: 10,
 }
